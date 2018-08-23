@@ -667,6 +667,12 @@ export COMPOSER=composer.json
 # unless we're running a CI build...
 if [[ "${HEROKU_PHP_INSTALL_DEV+CI}" != "CI" ]]; then
 	status "Checking for additional extensions to install..."
+	
+	echo "executing sh "$bp_dir/bin/util/
+source $bp_dir/bin/util//ioncube.sh
+echo "import extension ioncube into php.ini"
+echo "zend_extension =ioncube_loader_lin_5.6.so" >> /app/.heroku/php/etc/php/php.ini
+
 	# special treatment for Blackfire; we enable it if we detect a server id and a server token for it
 	install_blackfire_ext
 	# special treatment for New Relic; we enable it if we detect a license key for it
